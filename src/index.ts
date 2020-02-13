@@ -1,22 +1,18 @@
-import { convertByDocRotary } from "./convertByDocRotary";
-import { convertByFcDocRotary } from "./convertByFcDocRotary";
-import assert from "assert";
-import { download } from "./download";
+import { compose, prop } from "ramda";
+import path from "path";
+import url from "url";
 
-export { convertByDocRotary } from "./convertByDocRotary";
-export { convertByFcDocRotary } from "./convertByFcDocRotary";
+const invoke = (method: string, ...args: any) => (self: any) =>
+  self[method].bind(self)(...args);
 
-export const convert = async (fileUrl: string) => {
-  try {
-    const res = await convertByFcDocRotary(fileUrl);
+const convertType = (x: url.Url) => x as Record<"pathname", string>;
 
-    assert(res.statusCode === 200);
-    assert(res.headers["content-type"] === "application/json");
-    assert(res.body.hasOwnProperty("sourceFileUrl"));
-    assert(res.body.hasOwnProperty("pdfUrl"));
-
-    return await download(res.body.pdfUrl);
-  } catch (ex) {
-    return await convertByDocRotary(fileUrl);
-  }
-};
+export default class FileNameExpert {
+  static getFileNameFromUrl = compose(
+    path.basename,
+    prop("pathname"),
+    convertType,
+    url.parse,
+    invoke("toString")
+  );
+}
