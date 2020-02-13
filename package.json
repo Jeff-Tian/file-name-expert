@@ -16,7 +16,8 @@
     "lint": "tsdx lint --fix",
     "semantic-release": "semantic-release",
     "prepare": "yarn build",
-    "commit": "git commit -a -t commit.txt"
+    "commit": "git commit -a -t commit.txt",
+    "i:taobao": "npm i --registry=https://registry.npm.taobao.org"
   },
   "husky": {
     "hooks": {
