@@ -1,9 +1,16 @@
 {
-  "include": ["src", "types", "test"],
+  "include": [
+    "src",
+    "types",
+    "test"
+  ],
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
@@ -22,9 +29,11 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "*": ["src/*", "node_modules/*"]
+      "*": [
+        "src/*",
+        "node_modules/*"
+      ]
     },
-    "jsx": "react",
     "esModuleInterop": true
   }
 }
