@@ -3,3 +3,4 @@
 *.yaml text eol=lf
 *.ts text eol=lf
 *.txt text eol=lf
+*.json text eol=lf
