@@ -17,7 +17,14 @@ npm i file-name-expert --save
 
 ### Get file name from url
 
+#### note: CommonJS usage
+
+In order to gain the TypeScript typings (for intellisense / autocomplete) while using CommonJS imports with require() use the following approach:
+
 ```typescript
+const FileNameExpert = require("file-name-expert").default;
+// FileNameExpert.<method> will now provide autocomplete and parameter typings
+
 describe("gets filename", () => {
   it("gets filename from url", async () => {
     const url =

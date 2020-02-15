@@ -21,8 +21,8 @@ export default class FileNameExpert {
     decodeURIComponent,
     x =>
       "/" +
-      (prop("host")(x) ?? "") +
-      (prop("port")(x) ?? "") +
+      (prop("host")(x) || "") +
+      (prop("port")(x) || "") +
       prop("pathname")(x),
     url.parse,
     invoke("toString")
