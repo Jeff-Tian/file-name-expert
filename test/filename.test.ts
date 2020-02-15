@@ -15,4 +15,20 @@ describe("gets filename", () => {
 
     expect(FileNameExpert.getFileNameFromUrl(url)).toEqual("");
   });
+
+  it("keeps encode", async () => {
+    const url =
+      "http://libre-office.oss-cn-shanghai.aliyuncs.com/10.28%20T%26D%20%E7%94%B0%E6%9D%B0%20WeeklyReport.docx";
+    expect(FileNameExpert.getFileNameFromUrl(url)).toEqual(
+      "10.28 T&D 田杰 WeeklyReport.docx"
+    );
+  });
+
+  it("get full path of a file from file url", () => {
+    const url =
+      "http://libre-office.oss-cn-shanghai.aliyuncs.com/jeff/tian/10.28%20T%26D%20%E7%94%B0%E6%9D%B0%20WeeklyReport.docx";
+    expect(FileNameExpert.getFileFullNameFromUrl(url)).toEqual(
+      "/libre-office.oss-cn-shanghai.aliyuncs.com/jeff/tian/10.28 T&D 田杰 WeeklyReport.docx"
+    );
+  });
 });

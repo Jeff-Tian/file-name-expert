@@ -9,9 +9,21 @@ const convertType = (x: url.Url) => x as Record<"pathname", string>;
 
 export default class FileNameExpert {
   static getFileNameFromUrl = compose(
+    decodeURIComponent,
     path.basename,
     prop("pathname"),
     convertType,
+    url.parse,
+    invoke("toString")
+  );
+
+  static getFileFullNameFromUrl = compose(
+    decodeURIComponent,
+    x =>
+      "/" +
+      (prop("host")(x) ?? "") +
+      (prop("port")(x) ?? "") +
+      prop("pathname")(x),
     url.parse,
     invoke("toString")
   );
