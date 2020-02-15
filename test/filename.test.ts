@@ -9,4 +9,10 @@ describe("gets filename", () => {
       "v2ray-windows-64.zip"
     );
   });
+
+  it("returns empty if not a file url", async () => {
+    const url = "https://get.okteto.com";
+
+    expect(FileNameExpert.getFileNameFromUrl(url)).toEqual("");
+  });
 });
